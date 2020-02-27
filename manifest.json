@@ -2,11 +2,11 @@
 
 	"applications": {
 		"gecko": {
-			"id": "leechblockng@proginosko.com"
+			"id": "nick@example.com"
 		}
 	},
 
-	"author": "James Anderson",
+	"author": "Nicholas Eckardt",
 
 	"background": {
 		"scripts": ["common.js", "background.js"]
@@ -19,7 +19,7 @@
 			"32": "icons/leechblock32.png"
 		},
 		"default_popup": "popup.html",
-		"default_title": "LeechBlock"
+		"default_title": "NeckBlock"
 	},
 
 	"content_scripts": [
@@ -41,7 +41,7 @@
 
 	"manifest_version": 2,
 
-	"name": "LeechBlock NG",
+	"name": "NeckBlock",
 
 	"optional_permissions": [
 		"<all_urls>"
@@ -60,6 +60,6 @@
 		"webNavigation"
 	],
 
-	"version": "1.0.4"
+	"version": "0.1.0"
 
 }

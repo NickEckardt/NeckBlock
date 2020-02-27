@@ -5,11 +5,13 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>LeechBlock Options</title>
+		<title>NeckBlock Options</title>
 		<link href="jquery-ui/jquery-ui.min.css" rel="stylesheet">
 		<link href="options.css" rel="stylesheet">
-		<link href="icons/leechblock16.ico" rel="icon" type="image/x-icon">
+		<!--
+    <link href="icons/leechblock16.ico" rel="icon" type="image/x-icon">
 		<link href="icons/leechblock16.ico" rel="shortcut icon" type="image/x-icon">
+    -->
 		<link id="themeLink" rel="stylesheet">
 	</head>
 
@@ -20,33 +22,28 @@
 			<form id="form" style="display: none;">
 
 				<div id="tabs">
-					<ul>
-						<li id="tabBlockSet1"><a href="#blockSet1"><span id="blockSetName1">Block Set 1</span></a></li>
-						<li id="tabGeneral"><a href="#paneGeneral">General</a></li>
-						<li id="tabAbout"><a href="#paneAbout">About</a></li>
-					</ul>
+            <div id="BlockSets">
+              <ul>
+                <li id="tabBlockSet1"><a href="#blockSet1"><span id="blockSetName1">Block Set 1</span></a></li>
+				  	  	<li id="tabGeneral"><a href="#paneGeneral">General</a></li>
+				  	  	<li id="tabAbout"><a href="#paneAbout">About</a></li>
+				  	  </ul>
+            </div>
 					<div id="blockSet1">
+							<p>
+								<label>Block Set Name: </label>
+								<span><input id="setName1" type="text" size="25"></span>
+							</p>
 						<fieldset>
-							<legend>What to Block</legend>
-							<p>
-								<em>In this section, specify the sites you want to block.</em>
-							</p>
-							<hr>
-							<p>
-								<label>Enter a custom name for this block set (optional):</label><br>
-								<div><input id="setName1" type="text" size="60"></div>
-							</p>
+							<legend>Sites to Block</legend>
 							<p>
 								<label>Enter the domain names of the sites to block (one item per line):</label><br>
 								<div><textarea id="sites1" cols="60" rows="10" spellcheck="false" placeholder="somesite.com" title="Use * as wildcard and + to prefix exceptions"></textarea></div>
 							</p>
 						</fieldset>
+            <br/>
 						<fieldset>
 							<legend>When to Block</legend>
-							<p>
-								<em>In this section, specify when you want to block these sites.</em>
-							</p>
-							<hr>
 							<p>
 								<label>Enter the time periods within which to block these sites (optional):</label>
 								<div>
@@ -55,7 +52,16 @@
 								</div>
 							</p>
 							<p>
-								<label>Enter a time limit after which to block these sites (optional):</label>
+                <select id="conjMode1">
+									<option>OR</option>
+									<option>AND</option>
+                </select> 
+                  <input type="radio" id="blockLogicOR" name="blockLogic"></input>
+                  <label for="blockLogicOR">OR</label>
+                  <input type="radio" id="blockLogicAND" name="blockLogic"></input>
+                  <label for="blockLogicAND">AND</label>
+							</p>
+							<p>
 								<div>
 									<input id="limitMins1" type="text" size="4" title="Leave blank for no time limit">
 									minutes in every
@@ -78,14 +84,7 @@
 									</select>
 								</div>
 							</p>
-							<p>
-								<label>Select when to block these sites:</label>
-								<select id="conjMode1">
-									<option>within time periods OR after time limit</option>
-									<option>within time periods AND after time limit</option>
-								</select>
-								&nbsp;&nbsp;<a href="http://www.proginosko.com/leechblock/faq/difference-or-and/" target="_blank">What's the difference?</a>
-							</p>
+                            <hr/>
 							<p>
 								<label>Select the days on which to block these sites:</label>
 								<div id="days1">
@@ -105,12 +104,14 @@
 								</div>
 							</p>
 						</fieldset>
+            <br/>
+						<p>
+							<button id="resetOpts1" type="button">Reset Options to Defaults</button>
+							<button id="showAdvOpts1" type="button">Show Advanced Options</button>
+						</p>
+						<fieldset id="advOpts1">
 						<fieldset>
 							<legend>How to Block</legend>
-							<p>
-								<em>In this section, specify how you want to block these sites.</em>
-							</p>
-							<hr>
 							<p>
 								<label>Enter the fully specified URL of the page to show instead of these blocked sites:</label>
 								<div><input id="blockURL1" type="text" size="60" placeholder="http://somesite.com/somepage.html" title="Use $U to pass URL of blocked page"></div>
@@ -123,7 +124,6 @@
 									<button id="blankPage1" type="button">Blank Page</button>
 								</div>
 							</p>
-							<hr>
 							<p>
 								<input id="applyFilter1" type="checkbox">
 								<label for="applyFilter1">Apply filter instead of blocking page:</label>
@@ -156,21 +156,14 @@
 								<label for="allowOverride1">Allow temporary override for these sites</label>
 							</p>
 						</fieldset>
-						<p>
-							<button id="resetOpts1" type="button">Reset Options to Defaults</button>
-							<button id="showAdvOpts1" type="button">Show Advanced Options</button>
-						</p>
-						<fieldset id="advOpts1">
 							<legend>Advanced Options</legend>
 							<p>
 								<em>Be sure you understand the consequences of these options before changing any of them!</em>
 							</p>
-							<hr>
 							<p>
 								<input id="showTimer1" type="checkbox">
 								<label for="showTimer1">Show countdown timer for this block set</label>
 							</p>
-							<hr>
 							<p>
 								<input id="prevOpts1" type="checkbox">
 								<label for="prevOpts1">Prevent access to options for this block set at times when these sites are blocked</label>
@@ -183,12 +176,10 @@
 								<input id="prevSupport1" type="checkbox">
 								<label for="prevSupport1">Prevent access to about:support at times when these sites are blocked</label>
 							</p>
-							<hr>
 							<p>
 								Offset time limit period by <input id="limitOffset1" type="text" size="2" title="Leave blank for no offset"> hours
 								&nbsp;&nbsp;<a href="http://www.proginosko.com/leechblock/faq/time-limit-offset/" target="_blank">What does this do?</a>
 							</p>
-							<hr>
 							<p>
 								<label>Load list of sites from URL:</label>
 								<div><input id="sitesURL1" type="text" size="60" title="Use $S to pass block set number and $T to pass UTC timestamp in milliseconds">
@@ -216,7 +207,6 @@
 								<input id="ignoreHash1" type="checkbox">
 								<label for="ignoreHash1">Ignore fragment (hash part) when checking URL</label>
 							</p>
-							<hr>
 							<p>
 								<button id="cancelLockdown1" type="button" disabled="true">Cancel Active Lockdown</button>
 							</p>
@@ -362,7 +352,6 @@
 								<button id="importOptions" type="button">Import Options from File</button>
 								<input type="file" id="importFile">
 							</p>
-							<hr>
 							<p>
 								<button id="exportOptionsSync" type="button">Export Options to Sync Storage</button>
 								<button id="importOptionsSync" type="button">Import Options from Sync Storage</button>
@@ -374,24 +363,18 @@
 						</fieldset>
 					</div>
 					<div id="paneAbout">
+              <!--
 						<p>
 							<a href="http://www.proginosko.com/leechblock/" target="_blank"><img src="images/leechblock_logo.svg" class="logo" alt="LeechBlock logo" title="LeechBlock"></a>
 						</p>
+              -->
 						<p>
-							<a href="http://www.proginosko.com/leechblock/" target="_blank">LeechBlock NG</a>
-							(Next Generation) is a simple productivity tool designed to<br>
-							block those time-wasting sites that can suck the life out of your working day.<br>
-							All you need to do is specify which sites to block and when to block them.
+							NeckBlock blocks your webpages so you stop wasting your life on youtube. 
 						</p>
 						<p><strong>Version:</strong> <span id="version">?<span></p>
-						<p><strong>Author:</strong> James Anderson</p>
-						<p><strong>Contributors:</strong> Dario Kolac (graphics) &amp; Robert Gützkow (graphics)</p>
-						<p><strong>Examples:</strong>
-						<a href="http://www.proginosko.com/leechblock/examples/" target="_blank">http://www.proginosko.com/leechblock/examples/</a></p>
-						<p><strong>FAQ:</strong>
-						<a href="http://www.proginosko.com/leechblock/faq/" target="_blank">http://www.proginosko.com/leechblock/faq/</a></p>
-						<p><strong>Support:</strong>
-						<a href="http://www.proginosko.com/leechblock/support/" target="_blank">http://www.proginosko.com/leechblock/support/</a></p>
+						<p><strong>Author:</strong> Nicholas Eckardt </p>
+						<p><strong>Forked From:</strong>
+						<a href="http://www.proginosko.com/leechblock" target="_blank">LeechBlock</a></p>
 					</div>
 				</div>
 
